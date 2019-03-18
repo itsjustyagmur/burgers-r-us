@@ -1,0 +1,61 @@
+<div class="container" id="container">
+<div class="jumbotron" id="header">
+<h1 id="eat"><strong>Burgers-R-Us!</strong></h1>
+
+    <img src="/assets/img/burgers.png" id="burgers">
+</div>
+
+<div class="row">
+        <div class="col-sm-12">
+            <form class="create-update-form" action="/burgers" method="POST">
+
+            <div class="form-group" id="add">
+                    <h3 class="title">Add your burger name here : </h3>
+                    <br>
+                    <textarea id="box" class="form-control input-lg" type="text" name="burger_name" rows="3"></textarea>
+                    </div>
+                <button type="submit" id="order" class="bt btn-default btn-lg">Order Up!</button>
+                </form>
+        </div>
+    </div>
+<div>
+<br>
+<div class="col-m-2" id="delicious"></div>
+<div class="panel-panel default">
+<div class="panel-body">BURGERS</div>
+    <ul class="list-group">
+    {{#each burgers}}
+        {{#unless this.devoured}}
+    <li class="group-list">
+    <div class="group">
+        <p class="lead"> {{this.burger_name}} </p>
+        <span class="group-btn">
+            <form action="burgers/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">  
+            <button id="button" class="btn btn-danger btn-lg" type="submit">`Devour it!</button>
+                                </form>
+                            </span>
+                        </div>
+                    </li>
+                    {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+    <div class="col-sm-4" id="devoured">
+        <h3 id="full">All eaten burgers:</h3>
+            <div class="panel panel-default">
+                <ul class="list-group">
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                    <li class="list-group-item">
+                        <p class="lead">{{this.burger_name}} </p>
+                    </li>
+                    {{/if}}
+                {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
